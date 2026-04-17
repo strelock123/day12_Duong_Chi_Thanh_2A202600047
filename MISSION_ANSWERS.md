@@ -75,10 +75,10 @@ Shutdown	Đột ngột, không cleanup, chạy uvicorn.run(... reload=True)	Grac
 ## Part 2: Docker
 
 ### Exercise 2.1: Dockerfile questions
-1. Base image: Đây là image Python chính thức từ Docker Hub, phiên bản 3.11, chứa đầy đủ Python runtime và các công cụ cần thiết.
+1. Base image: Đây là image  Python chính thức từ Docker Hub, phiên bản 3.11, chứa đầy đủ Python runtime và các công cụ cần thiết.
 2. Working directory: Đây là thư mục làm việc bên trong container, nơi các lệnh tiếp theo sẽ thực thi và file sẽ được copy vào.
 3. Tại sao Copy requirements.txt trước: Để tận dụng Docker layer caching. Nếu requirements.txt không thay đổi giữa các lần build, Docker sẽ sử dụng cache cho bước RUN pip install, giúp build nhanh hơn và tiết kiệm băng thông.
-4. CMD vs Entrypoint khác nhau thế nào: CMD định nghĩa comand mặc định khi container start, có thể override bằng arguments khi docker run. entrypoint định nghĩa executable cố định, arguments từ CMD hoặc docker run sẽ được pass vào nó như parameters. Entrypoint không thể override dễ dàng 
+4. CMD vs Entrypoint khác nhau thế nào: CMD định nghĩa command mặc định khi container start, có thể override bằng arguments khi docker run. entrypoint định nghĩa executable cố định, arguments từ CMD hoặc docker run sẽ được pass vào nó như parameters. Entrypoint không thể override dễ dàng 
 ...
 
 ### Exercise 2.3: Image size comparison
