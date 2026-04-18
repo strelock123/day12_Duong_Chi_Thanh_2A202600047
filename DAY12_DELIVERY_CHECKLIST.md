@@ -1,14 +1,14 @@
 #  Delivery Checklist — Day 12 Lab Submission
 
-> **Student Name:** _________________________  
-> **Student ID:** _________________________  
-> **Date:** _________________________
+> **Student Name:** Dương Chí Thành  
+> **Student ID:** 2A202600047  
+> **Date:** 17/4/2026
 
 ---
 
 ##  Submission Requirements
 
-Submit a **GitHub repository** containing:
+Submit a **GitHub repository** containing: https://github.com/strelock123/day12_Duong_Chi_Thanh_2A202600047.git
 
 ### 1. Mission Answers (40 points)
 
