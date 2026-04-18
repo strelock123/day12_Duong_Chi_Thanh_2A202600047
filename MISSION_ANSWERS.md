@@ -81,10 +81,6 @@ Shutdown	Đột ngột, không cleanup, chạy uvicorn.run(... reload=True)	Grac
 4. CMD vs Entrypoint khác nhau thế nào: CMD định nghĩa command mặc định khi container start, có thể override bằng arguments khi docker run. entrypoint định nghĩa executable cố định, arguments từ CMD hoặc docker run sẽ được pass vào nó như parameters. Entrypoint không thể override dễ dàng 
 ...
 ### Exercise 2.2:
-
-
-
-
 ### Exercise 2.3: Image size comparison
 - Develop: [1.66] GB
 - Production: [236] MB
