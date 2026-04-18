@@ -102,7 +102,7 @@ railway.toml tập trung vào cấu hình runtime và build pipeline của một
 ## Part 4: API Security
 
 ### Exercise 4.1-4.3: Test results
-[Paste your test outputs]
+[Paste your test output]
 Câu hỏi: API key được check ở đâu? Điều gì xảy ra nếu sai key? JWT flow là gì? Algorithm nào được dùng cho Rate Limiting?
 
 Trả lời:
