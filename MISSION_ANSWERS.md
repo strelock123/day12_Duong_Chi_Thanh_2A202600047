@@ -122,6 +122,13 @@ Approach: Sử dụng Redis để lưu trữ mức chi tiêu (spending) theo use
 ### Exercise 5.1-5.5: Implementation notes
 [Your explanations and test results]
 ```
+**Câu hỏi:** Ghi chú các điểm quan trọng về Health checks, Graceful shutdown, Stateless design, Load balancing.
+
+**Trả lời:**
+- **Health Checks**: Đã triển khai `/health` để kiểm tra sự sống và `/ready` để kiểm tra kết nối Redis/DB.
+- **Graceful Shutdown**: Bắt tín hiệu `SIGTERM`, dừng nhận request mới và đợi tối đa 30s cho các request đang xử lý hoàn thành.
+- **Stateless Design**: Thay thế hội thoại trong biến global sang lưu trữ trong Redis. Giúp mở rộng số lượng container chạy song song mà không mất dữ liệu người dùng.
+
 
 ---
 
