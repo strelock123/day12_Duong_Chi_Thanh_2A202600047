@@ -120,7 +120,7 @@ Approach: Sử dụng Redis để lưu trữ mức chi tiêu (spending) theo use
 ## Part 5: Scaling & Reliability
 
 ### Exercise 5.1-5.5: Implementation notes
-[Your explanations and test results]
+[Your explannations and test results]
 ```
 **Câu hỏi:** Ghi chú các điểm quan trọng về Health checks, Graceful shutdown, Stateles design, Load balancing.
 

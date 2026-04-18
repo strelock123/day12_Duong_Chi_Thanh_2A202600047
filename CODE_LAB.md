@@ -112,6 +112,12 @@ python app.py
 | Logging | print() | JSON | ... |
 | Shutdown | Đột ngột | Graceful | ... |
 
+Feature	Basic	Advanced	Tại sao quan trọng?
+Config	Hardcode (OPENAI_API_KEY, DATABASE_URL, DEBUG, MAX_TOKENS, cứng host/port)	Env vars qua config.settings (PORT, DEBUG, host, app_name, environment, llm_model, allowed_origins)	Env vars giúp tách cấu hình khỏi code, dễ deploy lên cloud, tránh leak secret và cho phép dùng cùng code trên nhiều môi trường.
+Health check	Không có	Có /health và /ready	Health/readiness probe giúp platform biết app còn sống và sẵn sàng, hỗ trợ restart tự động và load balancing.
+Logging	print() debug, log ra cả secret	Structured JSON logging với logging và logger.info(...)	Logging cấu trúc dễ parse, dễ giám sát, và an toàn hơn vì không in secret; phù hợp với production và log aggregator.
+Shutdown	Đột ngột, không cleanup, chạy uvicorn.run(... reload=True)	Graceful shutdown với lifespan + SIGTERM handler	Graceful shutdown cho phép hoàn thành request hiện tại, đóng kết nối đúng cách và tránh mất mát dữ liệu khi container bị tắt.
+
 ###  Checkpoint 1
 
 - [ ] Hiểu tại sao hardcode secrets là nguy hiểm
