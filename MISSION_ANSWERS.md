@@ -97,14 +97,29 @@ Shutdown	Đột ngột, không cleanup, chạy uvicorn.run(... reload=True)	Grac
 - URL: https://day12duongchithanh2a202600047-production.up.railway.app/
 - Screenshot: [Link to screenshot in repo]
 ![alt text](image.png)
+### Exercise 3.2: Comparison (render.yaml vs railway.toml)
+Câu hỏi: So sánh render.yaml với railway.toml. Khác nhau gì?
+
+render.yaml cho phép định nghĩa toàn bộ hạ tầng (Blueprint) bao gồm cả các dịch vụ phụ trợ như Redis.
+railway.toml tập trung vào cấu hình runtime và build pipeline của một service đơn lẻ.
 
 ## Part 4: API Security
 
 ### Exercise 4.1-4.3: Test results
 [Paste your test outputs]
+Câu hỏi: API key được check ở đâu? Điều gì xảy ra nếu sai key? JWT flow là gì? Algorithm nào được dùng cho Rate Limiting?
+
+Trả lời:
+
+API Key: Trả về 401 Unauthorized nếu thiếu key và 403 Forbidden nếu key không khớp với AGENT_API_KEY.
+JWT: Người dùng cần POST tới /token lấy Bearer token trước khi gọi /ask. Token giúp mã hóa thông tin người dùng và có thời gian hết hạn (expiry).
+Rate Limiting: Thuật toán Sliding Window Counter được sử dụng. Nếu gọi quá 10 req/phút, server phản hồi lỗi 429 Too Many Requests.
 
 ### Exercise 4.4: Cost guard implementation
 [Explain your approach]
+Câu hỏi: Giải thích cách implement logic check_budget.
+
+Approach: Sử dụng Redis để lưu trữ mức chi tiêu (spending) theo user_id và tháng hiện tại. Trước khi gọi LLM, hệ thống kiểm tra ngân quỹ còn lại. Dữ liệu được đặt TTL 32 ngày để tự động reset mỗi tháng.
 
 ## Part 5: Scaling & Reliability
 
