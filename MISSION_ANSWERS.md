@@ -125,9 +125,30 @@ Approach: Sử dụng Redis để lưu trữ mức chi tiêu (spending) theo use
 **Câu hỏi:** Ghi chú các điểm quan trọng về Health checks, Graceful shutdown, Stateles design, Load balancing.
 
 **Trả lời:**
-- **Health Checks**: Đã triển khai `/health` để kiểm tra sự sống và `/ready` để kiểm tra kết nối Redis/DB.
-- **Graceful Shutdown**: Bắt tín hiệu `SIGTERM`, dừng nhận request mới và đợi tối đa 30s cho các request đang xử lý hoàn thành.
-- **Stateless Design**: Thay thế hội thoại trong biến global sang lưu trữ trong Redis. Giúp mở rộng số lượng container chạy song song mà không mất dữ liệu người dùng.
+Health checks:
+/health: Pass
+{
+  "status": "ok",
+  "uptime_seconds": 57.9,
+  "version": "1.0.0",
+  "environment": "development",
+  "timestamp": "2026-04-17T09:43:29.291436+00:00",
+  "checks": { "memory": { "status": "ok", "used_percent": 86.9 } }
+}
+/ready: Pass
+{ "ready": true, "in_flight_requests": 1 }
+Graceful shutdown:
+Bắt SIGTERM/SIGINT, ngừng nhận request mới, chờ in-flight requests hoàn thành rồi shutdown.
+Thời gian chờ tối đa: 30 giây
+Stateless design:
+Session data và conversation history được chuyển sang Redis.
+Cách làm này phù hợp khi scale nhiều replica.
+Load balancing:
+Nginx đứng trước 3 replica agent và phân phối request qua agent1, agent2, agent3.
+Redis được dùng làm shared storage.
+Stateless test:
+python 05-scaling-reliability/production/test_stateless.py
+Pass: 5 request đi qua nhiều instance nhưng vẫn giữ được đầy đủ history nhờ Redis.
 
 
 ---
