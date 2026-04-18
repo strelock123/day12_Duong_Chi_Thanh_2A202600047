@@ -112,7 +112,7 @@ JWT: Người dùng cần POST tới /token lấy Bearer token trước khi gọ
 Rate Limiting: Thuật toán Sliding Window Counter được sử dụng. Nếu gọi quá 10 req/phút, server phản hồi lỗi 429 Too Many Requests.
 
 ### Exercise 4.4: Cost guard implementation
-[Explain your approach]
+[Explain your aproach]
 Câu hỏi: Giải thích cách implement logic check_budget.
 
 Approach: Sử dụng Redis để lưu trữ mức chi tiêu (spending) theo user_id và tháng hiện tại. Trước khi gọi LLM, hệ thống kiểm tra ngân quỹ còn lại. Dữ liệu được đặt TTL 32 ngày để tự động reset mỗi tháng.
